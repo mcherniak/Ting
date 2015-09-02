@@ -12,7 +12,7 @@ Ting can be installed either using pip or manually, by running setup.py
 
 Usage
 -----
-```python
+```Shell
 usage: ting [-h] [-i INTERVAL] [-t TIMEOUT] [-v] host port
 
 Send a tcp syn packet to a host/port to see if a new connection can be made
