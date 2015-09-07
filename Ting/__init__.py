@@ -3,8 +3,8 @@ from argparse import ArgumentParser
 import socket
 
 
-__author__ = "Mikhail Cherniak <mikcherniak@gmail.com>, Peter Hill <>"
-__contributors__ = ["Mikhail Cherniak", "Peter Hill"]
+__author__ = "Mikhail Cherniak <mikcherniak@gmail.com>, Peter Hill <>, Nathan Sutherland <nathan.sutherland@gmail.com"
+__contributors__ = ["Mikhail Cherniak", "Peter Hill", "Nathan Sutherland"]
 __version__ = "1.0.0"
 __maintainer__ = ["Mikhail Cherniak", "Peter Hill"]
 
