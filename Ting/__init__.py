@@ -47,21 +47,25 @@ ARGS = PARSER.parse_args()
 
 
 def main():
-    sockets = socket.getaddrinfo(ARGS.host, ARGS.port)
+    sockets = socket.getaddrinfo(ARGS.host, ARGS.port, 0, socket.SOCK_STREAM)
     ting(sockets)
 
 
 def ting(sockets):
     for sock in sockets:
         print '{} {}'.format(sock[4][0], sock[4][1])
-        if check_socket(sock[4][0], sock[4][1]):
+        if check_socket(sock[4][0], sock[4][1], sock[0]):
             print True
-    print False
+        else:
+            print False
 
 
-def check_socket(host, port):
+def check_socket(host, port, proto):
     try:
-        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        if proto == 30:
+            sock = socket.socket(socket.AF_INET6, socket.SOCK_STREAM)
+        else:
+            sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         sock.settimeout(ARGS.timeout)
         sock.connect((host, int(port)))
         if sock:
@@ -70,8 +74,10 @@ def check_socket(host, port):
         sock.close()
         return connected
     except socket.gaierror as e:
-        print "caught: {}".format(e)
+        sock = socket.socket(socket.AF_INET6, socket.SOCK_STREAM)
+        sock.settimeout(ARGS.timeout)
+        print "gaierror caught: {}".format(e)
         return False
     except socket.error as e:
-        print "caught: {}".format(e)
+        print "error caught: {}".format(e)
         return False
